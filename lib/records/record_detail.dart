@@ -16,7 +16,7 @@ class RecordDetails extends StatelessWidget {
         child: GlobalAppBar(
             callback: () => Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => const RecordPage())),
-            title: "Records"),
+            title: "Patient 1 Records"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -34,7 +34,7 @@ class RecordDetails extends StatelessWidget {
               ),
             ),
             const Text(
-              "Patients A",
+              "Patient 1",
               style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
             ),
             const SizedBox(
