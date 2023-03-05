@@ -17,13 +17,13 @@ class RecordPage extends StatelessWidget {
         child: GlobalAppBar(
             callback: () => Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => const PatientDetails())),
-            title: "Patients"),
+            title: "Patient 1"),
       ),
       backgroundColor: Colors.white,
       body: Column(
         children: [
           const Text(
-            "Record",
+            "Records",
             style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
           ),
           const Padding(
@@ -34,7 +34,7 @@ class RecordPage extends StatelessWidget {
             ),
           ),
           const Text(
-            "Patients A",
+            "Patient 1",
             style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
           ),
           const SizedBox(
