@@ -45,8 +45,8 @@ class AddPatient extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) => const PatientPage()));
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => PatientPage()));
                   },
                   child: const Text("Add")),
             ),

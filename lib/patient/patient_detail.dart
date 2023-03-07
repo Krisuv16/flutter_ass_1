@@ -14,8 +14,8 @@ class PatientDetails extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size(MediaQuery.of(context).size.width, 50),
         child: GlobalAppBar(
-            callback: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const PatientPage())),
+            callback: () => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => PatientPage())),
             title: "Patients"),
       ),
       body: SingleChildScrollView(
@@ -62,7 +62,7 @@ class PatientDetails extends StatelessWidget {
                   child: ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const PatientPage()));
+                            builder: (context) => PatientPage()));
                       },
                       child: const Text("Edit Patient")),
                 ),

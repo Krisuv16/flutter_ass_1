@@ -50,8 +50,8 @@ class LoginPage extends StatelessWidget {
               ),
               ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const PatientPage()));
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => PatientPage()));
                   },
                   child: const Text("Login"))
             ],
