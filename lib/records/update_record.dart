@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:patientapp/patient/patient.dart';
 import 'package:patientapp/records/record_detail.dart';
 import 'package:patientapp/utils/app_bar.dart';
 import 'package:patientapp/utils/custom_textfield.dart';
@@ -22,7 +21,7 @@ class UpDateRecord extends StatelessWidget {
         child: Column(
           children: [
             const Text(
-              "Record 4",
+              "Edit Record 4",
               style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
             ),
             const Padding(
@@ -33,7 +32,7 @@ class UpDateRecord extends StatelessWidget {
               ),
             ),
             const Text(
-              "Patients A",
+              "Patient A",
               style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
             ),
             const SizedBox(
@@ -53,8 +52,8 @@ class UpDateRecord extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => PatientPage()));
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => const RecordDetails()));
                   },
                   child: const Text("Update")),
             ),

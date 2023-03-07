@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:patientapp/patient/patient.dart';
-import 'package:patientapp/records/record_detail.dart';
+import 'package:patientapp/records/records.dart';
 import 'package:patientapp/utils/app_bar.dart';
 import 'package:patientapp/utils/custom_textfield.dart';
 
@@ -15,12 +14,16 @@ class AddRecord extends StatelessWidget {
         preferredSize: Size(MediaQuery.of(context).size.width, 50),
         child: GlobalAppBar(
             callback: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const RecordDetails())),
-            title: "Records"),
+                MaterialPageRoute(builder: (context) => const RecordPage())),
+            title: "Patient 1 Records"),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            const Text(
+              "Add Record",
+              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+            ),
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: Icon(
@@ -29,7 +32,7 @@ class AddRecord extends StatelessWidget {
               ),
             ),
             const Text(
-              "Patients A",
+              "Patient A",
               style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
             ),
             const SizedBox(
@@ -49,8 +52,8 @@ class AddRecord extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => PatientPage()));
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => const RecordPage()));
                   },
                   child: const Text("Add")),
             ),

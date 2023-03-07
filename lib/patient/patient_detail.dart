@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patientapp/patient/patient.dart';
+import 'package:patientapp/patient/update_patient.dart';
 import 'package:patientapp/records/records.dart';
 import 'package:patientapp/utils/app_bar.dart';
 import 'package:patientapp/utils/info.dart';
@@ -14,8 +15,8 @@ class PatientDetails extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size(MediaQuery.of(context).size.width, 50),
         child: GlobalAppBar(
-            callback: () => Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => PatientPage())),
+            callback: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const PatientPage())),
             title: "Patients"),
       ),
       body: SingleChildScrollView(
@@ -23,7 +24,7 @@ class PatientDetails extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              "Patients 1",
+              "Patient 1",
               style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
             ),
             const Icon(
@@ -62,7 +63,7 @@ class PatientDetails extends StatelessWidget {
                   child: ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => PatientPage()));
+                            builder: (context) => const UpdatePatient()));
                       },
                       child: const Text("Edit Patient")),
                 ),

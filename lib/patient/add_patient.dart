@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:patientapp/patient/patient.dart';
-import 'package:patientapp/records/record_detail.dart';
 import 'package:patientapp/utils/app_bar.dart';
 import 'package:patientapp/utils/custom_textfield.dart';
 
@@ -15,8 +14,8 @@ class AddPatient extends StatelessWidget {
         preferredSize: Size(MediaQuery.of(context).size.width, 50),
         child: GlobalAppBar(
             callback: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const RecordDetails())),
-            title: "Records"),
+                MaterialPageRoute(builder: (context) => const PatientPage())),
+            title: "Patients"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -29,7 +28,7 @@ class AddPatient extends StatelessWidget {
               ),
             ),
             const Text(
-              "Patients",
+              "Add Patient",
               style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
             ),
             const SizedBox(
