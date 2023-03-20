@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patientapp/patient/model/patient.model.dart';
 import 'package:patientapp/patient/patient_detail.dart';
 import 'package:patientapp/records/add_record.dart';
 import 'package:patientapp/records/record_detail.dart';
@@ -6,7 +7,8 @@ import 'package:patientapp/utils/app_bar.dart';
 import 'package:patientapp/utils/info.dart';
 
 class RecordPage extends StatelessWidget {
-  const RecordPage({Key? key}) : super(key: key);
+  const RecordPage({Key? key, this.dataList}) : super(key: key);
+  final PatientDataList? dataList;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,9 @@ class RecordPage extends StatelessWidget {
         preferredSize: Size(MediaQuery.of(context).size.width, 50),
         child: GlobalAppBar(
             callback: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const PatientDetails())),
+                builder: (context) => PatientDetails(
+                      model: dataList!,
+                    ))),
             title: "Patient 1"),
       ),
       backgroundColor: Colors.white,
