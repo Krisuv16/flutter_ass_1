@@ -21,18 +21,14 @@ class _PatientPageState extends State<PatientPage> {
   List<PatientDataList> _patientList = <PatientDataList>[];
 
   Future fetchrequests() async {
-    final prefs = await SharedPreferences.getInstance();
-    var token = prefs.getString('token');
     var url = base_url + patients;
-    var response = await dio.get(url,
-        options: Options(headers: {"Authorization": "Bearer $token"}));
+    var response = await dio.get(url);
     if (response.statusCode == 200) {
       PatientModel model = PatientModel.fromJson(response.data);
       _patientList = model.posts!;
       setState(() {});
       return _patientList;
     } else {
-      print('A network error occurred');
       return null;
     }
   }
@@ -100,8 +96,10 @@ class _PatientPageState extends State<PatientPage> {
             ),
             ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => AddPatient()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => AddPatient(
+                            total: _patientList.length,
+                          )));
                 },
                 child: const Text("Add New Patient"))
           ],

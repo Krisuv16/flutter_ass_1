@@ -25,6 +25,7 @@ class PatientDataList {
   String? sId;
   String? fullName;
   String? age;
+  String? patientId;
   String? address;
   String? dob;
   String? phoneNumber;
@@ -36,6 +37,7 @@ class PatientDataList {
       this.fullName,
       this.age,
       this.address,
+      this.patientId,
       this.dob,
       this.phoneNumber,
       this.image,
@@ -47,6 +49,7 @@ class PatientDataList {
     age = json['age'];
     address = json['address'];
     dob = json['dob'];
+    patientId = json['patientId'];
     phoneNumber = json['phoneNumber'];
     image = json['image'];
     iV = json['__v'];
@@ -60,6 +63,7 @@ class PatientDataList {
     data['address'] = address;
     data['dob'] = dob;
     data['phoneNumber'] = phoneNumber;
+    data['patientId'] = patientId;
     data['image'] = image;
     data['__v'] = iV;
     return data;

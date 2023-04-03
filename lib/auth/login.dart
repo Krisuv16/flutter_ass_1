@@ -23,7 +23,9 @@ class LoginPage extends StatelessWidget {
     var data = {"username": username, "password": password};
     try {
       var url = base_url + login;
-      var response = await dio.post(url, data: data);
+      var response = await dio.post(url,
+          data: data,
+          options: Options(contentType: "application/x-www-form-urlencoded"));
       if (response.statusCode == 200) {
         prefs.setString('token', response.data['accessToken']);
         return true;

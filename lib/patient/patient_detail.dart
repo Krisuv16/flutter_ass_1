@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:patientapp/patient/model/patient.model.dart';
 import 'package:patientapp/patient/patient.dart';
-import 'package:patientapp/patient/update_patient.dart';
 import 'package:patientapp/records/records.dart';
 import 'package:patientapp/utils/app_bar.dart';
 import 'package:patientapp/utils/info.dart';
@@ -41,7 +40,7 @@ class PatientDetails extends StatelessWidget {
             ),
             Info(
               firstField: "Patient ID",
-              secondField: model.sId ?? "",
+              secondField: model.patientId.toString(),
             ),
             Info(
               firstField: "Name",
@@ -69,23 +68,25 @@ class PatientDetails extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                // Padding(
+                //   padding: const EdgeInsets.all(8.0),
+                //   child: ElevatedButton(
+                //       onPressed: () {
+                //         Navigator.of(context).push(MaterialPageRoute(
+                //             builder: (context) => UpdatePatient(
+                //                   patientList: model,
+                //                 )));
+                //       },
+                //       child: const Text("Edit Patient")),
+                // ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => UpdatePatient(
-                                  patientList: model,
+                            builder: (context) => RecordPage(
+                                  dataList: model,
                                 )));
-                      },
-                      child: const Text("Edit Patient")),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const RecordPage()));
                       },
                       child: const Text("View Records")),
                 )

@@ -9,8 +9,9 @@ import 'package:patientapp/utils/dialog_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AddPatient extends StatelessWidget {
-  AddPatient({Key? key, this.model}) : super(key: key);
+  AddPatient({Key? key, this.model, required this.total}) : super(key: key);
   final PatientDataList? model;
+  final int total;
 
   final dio = Dio();
 
@@ -36,7 +37,7 @@ class AddPatient extends StatelessWidget {
         () => DialogUtils.showLoadingDialog(context, dismissable: false));
     var token = prefs.getString("token");
     var data = {
-      "patient_id": "640695e2ac23848553ab2024",
+      "patientId": total + 1,
       "fullName": name,
       "age": age,
       "address": address,
@@ -44,10 +45,12 @@ class AddPatient extends StatelessWidget {
       "phoneNumber": number,
     };
     try {
-      var url = base_url + patient;
+      var url = base_url + addPatient;
       var response = await dio.post(url,
           data: data,
-          options: Options(headers: {"Authorization": "Bearer $token"}));
+          options: Options(
+              headers: {"Authorization": "Bearer $token"},
+              contentType: "application/x-www-form-urlencoded"));
       if (response.statusCode == 200) {
         return true;
       } else {
@@ -56,7 +59,6 @@ class AddPatient extends StatelessWidget {
       }
     } catch (e) {
       Navigator.pop(context);
-      print(e.toString());
       return false;
     }
   }
