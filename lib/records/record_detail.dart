@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:patientapp/patient/model/patient.model.dart';
+import 'package:patientapp/records/model/patient_records.model.dart';
 import 'package:patientapp/records/records.dart';
-import 'package:patientapp/records/update_record.dart';
 import 'package:patientapp/utils/app_bar.dart';
 import 'package:patientapp/utils/info.dart';
 
 class RecordDetails extends StatelessWidget {
-  const RecordDetails({Key? key}) : super(key: key);
+  const RecordDetails({Key? key, this.patientRecordListModel, this.dataList})
+      : super(key: key);
+
+  final PatientDataList? dataList;
+  final RecordModel? patientRecordListModel;
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +21,14 @@ class RecordDetails extends StatelessWidget {
         child: GlobalAppBar(
             callback: () => Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => const RecordPage())),
-            title: "Patient 1 Records"),
+            title: dataList!.fullName!),
       ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              "Record 4",
+              "Records",
               style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
             ),
             const Padding(
@@ -33,46 +38,53 @@ class RecordDetails extends StatelessWidget {
                 size: 65,
               ),
             ),
-            const Text(
-              "Patient 1",
-              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+            Text(
+              dataList!.fullName!,
+              style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
             ),
             const SizedBox(
               height: 20,
             ),
-            const Info(
+            Info(
               firstField: "Patient ID",
-              secondField: "XX9677",
+              secondField: dataList!.patientId!,
             ),
             const Info(
               firstField: "Medical Status",
               secondField: "Great",
             ),
-            const Info(
-              firstField: "Date",
-              secondField: "02-12-2023",
+            Info(
+              firstField: "D.O.B",
+              secondField: dataList!.dob!,
             ),
-            const Info(
+            Info(
               firstField: "Time",
-              secondField: "12:00 PM",
+              secondField: patientRecordListModel!.time!,
             ),
-            const Info(
-                firstField: "Blood Pressure", secondField: "120/90 mmHg"),
-            const Info(firstField: "Respiration Rate", secondField: "22/min"),
-            const Info(firstField: "O2 Level", secondField: "90%"),
-            const Info(firstField: "Heart Rate", secondField: "97%"),
+            Info(
+                firstField: "Blood Pressure",
+                secondField: patientRecordListModel!.bloodPressure!),
+            Info(
+                firstField: "Respiration Rate",
+                secondField: patientRecordListModel!.respirationRate!),
+            Info(
+                firstField: "O2 Level",
+                secondField: patientRecordListModel!.bloodOxygen!),
+            Info(
+                firstField: "Heart Rate",
+                secondField: "${patientRecordListModel!.heartBeat!}%"),
             const SizedBox(
               height: 20,
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const UpDateRecord()));
-                  },
-                  child: const Text("Edit Record")),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(8.0),
+            //   child: ElevatedButton(
+            //       onPressed: () {
+            //         Navigator.of(context).push(MaterialPageRoute(
+            //             builder: (context) => const UpDateRecord()));
+            //       },
+            //       child: const Text("Edit Record")),
+            // ),
           ],
         ),
       ),

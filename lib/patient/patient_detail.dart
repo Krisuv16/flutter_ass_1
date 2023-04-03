@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:patientapp/patient/model/patient.model.dart';
 import 'package:patientapp/patient/patient.dart';
-import 'package:patientapp/patient/update_patient.dart';
 import 'package:patientapp/records/records.dart';
 import 'package:patientapp/utils/app_bar.dart';
 import 'package:patientapp/utils/info.dart';
 
 class PatientDetails extends StatelessWidget {
-  const PatientDetails({Key? key}) : super(key: key);
+  const PatientDetails({Key? key, required this.model}) : super(key: key);
+
+  final PatientDataList model;
 
   @override
   Widget build(BuildContext context) {
@@ -23,56 +25,68 @@ class PatientDetails extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              "Patient 1",
-              style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+            Text(
+              model.fullName ?? "",
+              style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
             ),
-            const Icon(
-              Icons.person,
-              size: 65,
-            ),
+            model.image == "" || model.image == null
+                ? const Icon(
+                    Icons.person,
+                    size: 65,
+                  )
+                : Image.network(model.image!),
             const SizedBox(
               height: 20,
             ),
-            const Info(
+            Info(
               firstField: "Patient ID",
-              secondField: "XX9677",
+              secondField: model.patientId.toString(),
             ),
-            const Info(
+            Info(
               firstField: "Name",
-              secondField: "Krisuv Bohara",
+              secondField: model.fullName ?? "",
             ),
-            const Info(
+            Info(
               firstField: "Age",
-              secondField: "21",
+              secondField: model.age ?? "",
             ),
-            const Info(
+            Info(
               firstField: "Address",
-              secondField: "111 Treverton Drive",
+              secondField: model.address ?? "",
             ),
-            const Info(firstField: "D.O.B", secondField: "August 03, 2001"),
-            const Info(firstField: "Contact", secondField: "+1-437-267-9718"),
+            Info(
+              firstField: "D.O.B",
+              secondField: model.dob ?? "",
+            ),
+            Info(
+              firstField: "Contact",
+              secondField: model.phoneNumber ?? "",
+            ),
             const SizedBox(
               height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                // Padding(
+                //   padding: const EdgeInsets.all(8.0),
+                //   child: ElevatedButton(
+                //       onPressed: () {
+                //         Navigator.of(context).push(MaterialPageRoute(
+                //             builder: (context) => UpdatePatient(
+                //                   patientList: model,
+                //                 )));
+                //       },
+                //       child: const Text("Edit Patient")),
+                // ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const UpdatePatient()));
-                      },
-                      child: const Text("Edit Patient")),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const RecordPage()));
+                            builder: (context) => RecordPage(
+                                  dataList: model,
+                                )));
                       },
                       child: const Text("View Records")),
                 )
